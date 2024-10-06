@@ -3,10 +3,14 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\AuthenticatedSessionController as Authentication;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/', [Authentication::class, "create"]);
+Route::get("/logout", [Authentication::class, "destroy"])->name("logout");
 
 Route::get('/dashboard', function () {
     return view('dashboard');
